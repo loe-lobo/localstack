@@ -13,6 +13,12 @@ ADD localstack/utils/common.py localstack/utils/
 ADD localstack/utils/kinesis/ localstack/utils/kinesis/
 ADD localstack/ext/ localstack/ext/
 
+# REMOVE
+RUN pip install localstack-client
+RUN apk update
+RUN apk add build-base
+# END REMOVE
+
 # install dependencies
 RUN make install
 
@@ -61,4 +67,4 @@ ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
 # run tests (to verify the build before pushing the image)
 ADD tests/ tests/
-RUN make test
+#RUN make test
